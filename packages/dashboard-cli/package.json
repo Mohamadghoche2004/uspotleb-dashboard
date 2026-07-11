@@ -1,0 +1,63 @@
+{
+  "name": "@uspot-leb/dashboard-cli",
+  "version": "1.0.2",
+  "description": "CLI tool to generate a customizable USpotLeb SaaS dashboard into your Next.js project — source code you own, no lock-in.",
+  "keywords": [
+    "uspotleb",
+    "dashboard",
+    "cli",
+    "nextjs",
+    "tailwind",
+    "saas",
+    "generator",
+    "shadcn"
+  ],
+  "author": "USpotLeb",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "uspot-dashboard": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rimraf dist",
+    "prepublishOnly": "pnpm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uspotleb/uspotleb-dashboard.git",
+    "directory": "packages/dashboard-cli"
+  },
+  "bugs": {
+    "url": "https://github.com/uspotleb/uspotleb-dashboard/issues"
+  },
+  "homepage": "https://github.com/uspotleb/uspotleb-dashboard#readme",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.1.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.10.0",
+    "@types/prompts": "^2.4.9",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.2"
+  }
+}

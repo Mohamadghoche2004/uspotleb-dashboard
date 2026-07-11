@@ -1,0 +1,57 @@
+{
+  "name": "@uspot-leb/dashboard-components",
+  "version": "1.0.0",
+  "description": "Shared USpotLeb dashboard React components (reference package — prefer copying via the CLI)",
+  "keywords": [
+    "uspotleb",
+    "dashboard",
+    "react",
+    "nextjs",
+    "tailwind"
+  ],
+  "author": "USpotLeb",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rimraf dist",
+    "prepublishOnly": "pnpm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "clsx": ">=2.0.0",
+    "lucide-react": ">=0.400.0",
+    "react": ">=18",
+    "react-dom": ">=18",
+    "recharts": ">=2.12.0",
+    "tailwind-merge": ">=2.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.24.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "recharts": "^3.9.2",
+    "rimraf": "^6.0.1",
+    "tailwind-merge": "^3.6.0",
+    "typescript": "^5.7.2"
+  }
+}

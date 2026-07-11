@@ -1,0 +1,30 @@
+{
+  "name": "uspotleb-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "USpotLeb dashboard monorepo — CLI generator and shared components",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "dev": "pnpm --filter @uspot-leb/dashboard-cli run dev",
+    "lint": "eslint \"packages/**/*.{ts,tsx}\" --ext .ts,.tsx",
+    "lint:fix": "eslint \"packages/**/*.{ts,tsx}\" --ext .ts,.tsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,json,md}\"",
+    "typecheck": "pnpm -r run typecheck",
+    "clean": "pnpm -r run clean"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.15.0"
+}
