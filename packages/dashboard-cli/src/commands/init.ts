@@ -151,7 +151,9 @@ function printSuccess(cwd: string): void {
   logger.success("USpotLeb dashboard is ready!");
   logger.newline();
   logger.info("Generated structure:");
-  logger.dim(`  ${path.relative(cwd, path.join(cwd, "app/dashboard/"))}`);
+  logger.dim(`  ${path.join("app", "(dashboard)", "layout.tsx")}      ${chalk.dim("← theme + shell (once)")}`);
+  logger.dim(`  ${path.join("app", "(dashboard)", "dashboard", "page.tsx")}   ${chalk.dim("→ /dashboard")}`);
+  logger.dim(`  ${path.join("app", "(dashboard)", "users", "page.tsx")}       ${chalk.dim("→ /users")}`);
   logger.dim(`  ${path.relative(cwd, path.join(cwd, "components/dashboard/"))}`);
   logger.dim(`  ${path.relative(cwd, path.join(cwd, "config/dashboard.config.ts"))}`);
   logger.dim(`  ${path.relative(cwd, path.join(cwd, "hooks/useDashboard.ts"))}`);
@@ -160,6 +162,9 @@ function printSuccess(cwd: string): void {
   logger.info("Next steps:");
   logger.dim(`  1. Open ${chalk.cyan("config/dashboard.config.ts")} and customize your brand`);
   logger.dim(`  2. Run ${chalk.cyan("npm run dev")} and visit ${chalk.cyan("/dashboard")}`);
-  logger.dim(`  3. Add more components: ${chalk.cyan("npx @uspot-leb/dashboard-cli add chart")}`);
+  logger.dim(
+    `  3. Add a page: create ${chalk.cyan("app/(dashboard)/orders/page.tsx")} — it inherits the chrome automatically`,
+  );
+  logger.dim(`  4. Add more components: ${chalk.cyan("npx @uspot-leb/dashboard-cli add chart")}`);
   logger.newline();
 }

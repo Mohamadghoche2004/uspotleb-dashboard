@@ -22,8 +22,6 @@ export interface UseDashboardReturn {
   error: string | null;
   stats: DashboardStats | null;
   trends: DashboardTrend[];
-  sidebarCollapsed: boolean;
-  toggleSidebar: () => void;
   refresh: () => Promise<void>;
 }
 
@@ -49,11 +47,6 @@ export function useDashboard(): UseDashboardReturn {
   const [error, setError] = useState<string | null>(null);
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [trends, setTrends] = useState<DashboardTrend[]>([]);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-
-  const toggleSidebar = useCallback(() => {
-    setSidebarCollapsed((prev) => !prev);
-  }, []);
 
   const refresh = useCallback(async () => {
     setStatus("loading");
@@ -81,10 +74,8 @@ export function useDashboard(): UseDashboardReturn {
       error,
       stats,
       trends,
-      sidebarCollapsed,
-      toggleSidebar,
       refresh,
     }),
-    [status, error, stats, trends, sidebarCollapsed, toggleSidebar, refresh],
+    [status, error, stats, trends, refresh],
   );
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.3
+
+- Route-group layout: `app/(dashboard)/layout.tsx` owns the theme provider + shell once
+- Pages are now content-only — new routes under `app/(dashboard)/` inherit the chrome automatically (no per-page boilerplate)
+- `DashboardShell` owns sidebar collapse + mobile state and resolves the header title from the active route, so state no longer remounts on navigation
+- `useDashboard` simplified to data-only; added a `/users` example page
+
 ## 1.0.2
 
 - Theme button works via class-based dark mode configured on `init` (Tailwind v3 + v4)

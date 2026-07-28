@@ -1,6 +1,6 @@
 {
   "name": "@uspot-leb/dashboard-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CLI tool to generate a customizable USpotLeb SaaS dashboard into your Next.js project — source code you own, no lock-in.",
   "keywords": [
     "uspotleb",

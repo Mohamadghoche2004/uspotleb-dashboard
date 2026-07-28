@@ -23,8 +23,9 @@ const COMPONENT_FILES: Record<Exclude<ComponentKey, "all">, string[]> = {
   stat: ["components/dashboard/StatCard.tsx"],
   shell: [
     "components/dashboard/DashboardShell.tsx",
-    "app/dashboard/layout.tsx",
-    "app/dashboard/page.tsx",
+    "components/dashboard/ThemeProvider.tsx",
+    "app/(dashboard)/layout.tsx",
+    "app/(dashboard)/dashboard/page.tsx",
   ],
 };
 
@@ -44,8 +45,9 @@ const CORE_FILES: string[] = [
   "components/dashboard/EmptyState.tsx",
   "components/dashboard/ErrorState.tsx",
   "components/dashboard/LoadingState.tsx",
-  "app/dashboard/layout.tsx",
-  "app/dashboard/page.tsx",
+  "app/(dashboard)/layout.tsx",
+  "app/(dashboard)/dashboard/page.tsx",
+  "app/(dashboard)/users/page.tsx",
 ];
 
 export interface CopyTemplatesOptions {
