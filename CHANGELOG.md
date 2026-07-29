@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.5
+
+- Dashboard shell is full-viewport width (`w-full`) so it no longer sits in a centered column with side gutters
+- On `init`, root `app/layout.tsx` is patched to drop common create-next-app centering / `max-width` wrappers on `<body>`
+- On `init`, `globals.css` gets `html, body { width: 100%; max-width: 100%; }` so the page stays edge-to-edge
+
+## 1.0.4
+
+- Fix package `repository` / `homepage` / `bugs` URLs to https://github.com/Mohamadghoche2004/uspotleb-dashboard
+
 ## 1.0.3
 
 - Route-group layout: `app/(dashboard)/layout.tsx` owns the theme provider + shell once

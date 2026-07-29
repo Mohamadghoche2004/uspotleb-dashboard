@@ -34,7 +34,12 @@ export function DashboardShell({ children, title, className }: DashboardShellPro
   }, [pathname, title]);
 
   return (
-    <div className={cn("flex min-h-screen bg-zinc-50 dark:bg-zinc-900", className)}>
+    <div
+      className={cn(
+        "flex min-h-screen w-full min-w-0 bg-zinc-50 dark:bg-zinc-900",
+        className,
+      )}
+    >
       <Sidebar
         collapsed={sidebarCollapsed}
         onToggleCollapse={() => setSidebarCollapsed((v) => !v)}
@@ -43,7 +48,7 @@ export function DashboardShell({ children, title, className }: DashboardShellPro
 
       <div className="flex min-w-0 flex-1 flex-col">
         <Header title={resolvedTitle} onMenuClick={() => setMobileOpen(true)} />
-        <main className="flex-1 p-4 md:p-6">{children}</main>
+        <main className="min-w-0 flex-1 p-4 md:p-6">{children}</main>
       </div>
     </div>
   );

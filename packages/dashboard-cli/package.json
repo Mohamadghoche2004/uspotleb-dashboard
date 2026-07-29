@@ -1,6 +1,6 @@
 {
   "name": "@uspot-leb/dashboard-cli",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "CLI tool to generate a customizable USpotLeb SaaS dashboard into your Next.js project — source code you own, no lock-in.",
   "keywords": [
     "uspotleb",
@@ -39,13 +39,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/uspotleb/uspotleb-dashboard.git",
+    "url": "https://github.com/Mohamadghoche2004/uspotleb-dashboard.git",
     "directory": "packages/dashboard-cli"
   },
   "bugs": {
-    "url": "https://github.com/uspotleb/uspotleb-dashboard/issues"
+    "url": "https://github.com/Mohamadghoche2004/uspotleb-dashboard/issues"
   },
-  "homepage": "https://github.com/uspotleb/uspotleb-dashboard#readme",
+  "homepage": "https://github.com/Mohamadghoche2004/uspotleb-dashboard#readme",
   "dependencies": {
     "chalk": "^5.4.1",
     "commander": "^12.1.0",

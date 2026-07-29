@@ -11,8 +11,8 @@ program
   .description(
     "USpotLeb Dashboard CLI — generate a customizable SaaS dashboard into your Next.js project",
   )
-  .version("1.0.3");
-
+  .version("1.0.5");
+  
 program
   .command("init")
   .description("Initialize the USpotLeb dashboard in your Next.js project")

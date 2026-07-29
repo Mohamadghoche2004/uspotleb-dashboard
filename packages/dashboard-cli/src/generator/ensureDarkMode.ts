@@ -34,6 +34,9 @@ export async function ensureClassDarkMode(
   const layoutChange = await patchRootLayout(cwd);
   if (layoutChange) changes.push(layoutChange);
 
+  const widthCssChange = await patchGlobalsCssFullWidth(cwd);
+  if (widthCssChange) changes.push(widthCssChange);
+
   return { changes, tailwindMajor };
 }
 
@@ -189,7 +192,95 @@ async function patchRootLayout(cwd: string): Promise<string | null> {
     }
   }
 
+  // Ensure the dashboard can span the full viewport (create-next-app often centers / caps width).
+  const fullWidthResult = ensureBodyFullWidth(content);
+  if (fullWidthResult.changed) {
+    content = fullWidthResult.content;
+    changed = true;
+  }
+
   if (!changed) return null;
   await fs.writeFile(file, content, "utf8");
+  return path.relative(cwd, file);
+}
+
+/**
+ * Make <body> full-bleed and strip common starter centering / max-width wrappers
+ * that leave empty side gutters around the dashboard.
+ */
+function ensureBodyFullWidth(content: string): { content: string; changed: boolean } {
+  let next = content;
+  let changed = false;
+
+  const bodyMatch = next.match(/<body([^>]*)>/);
+  if (bodyMatch) {
+    const attrs = bodyMatch[1] ?? "";
+    const classMatch = attrs.match(/className=(["'`])([\s\S]*?)\1/);
+
+    if (classMatch) {
+      const quote = classMatch[1] ?? '"';
+      let classes = classMatch[2] ?? "";
+      const original = classes;
+
+      // Drop layout-centering utilities that shrink the page into a column.
+      classes = classes
+        .replace(/\bitems-center\b/g, "")
+        .replace(/\bjustify-center\b/g, "")
+        .replace(/\bjustify-items-center\b/g, "")
+        .replace(/\bplace-items-center\b/g, "")
+        .replace(/\bplace-content-center\b/g, "")
+        .replace(/\bmax-w-[^\s"'`]+/g, "")
+        .replace(/\bcontainer\b/g, "")
+        .replace(/\bmx-auto\b/g, "")
+        .replace(/\bmin-h-full\b/g, "min-h-screen")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (!/\bw-full\b/.test(classes)) classes = `${classes} w-full`.trim();
+      if (!/\bmin-h-screen\b/.test(classes) && !/\bmin-h-dvh\b/.test(classes)) {
+        classes = `${classes} min-h-screen`.trim();
+      }
+
+      if (classes !== original) {
+        next = next.replace(
+          bodyMatch[0],
+          `<body${attrs.replace(classMatch[0], `className=${quote}${classes}${quote}`)}>`,
+        );
+        changed = true;
+      }
+    } else {
+      next = next.replace(bodyMatch[0], `<body${attrs} className="min-h-screen w-full">`);
+      changed = true;
+    }
+  }
+
+  // Unwrap a single centering / max-width div that only wraps {children}.
+  const wrapperRe =
+    /<div\s+className=(["'`])([^"'`]*?(?:items-center|justify-center|justify-items-center|max-w-|container|mx-auto)[^"'`]*?)\1\s*>\s*\{children\}\s*<\/div>/m;
+  if (wrapperRe.test(next)) {
+    next = next.replace(wrapperRe, "{children}");
+    changed = true;
+  }
+
+  return { content: next, changed };
+}
+
+async function patchGlobalsCssFullWidth(cwd: string): Promise<string | null> {
+  const file = await findGlobalsCss(cwd);
+  if (!file) return null;
+
+  let css = await fs.readFile(file, "utf8");
+  if (css.includes("/* uspotleb-full-width */")) return null;
+
+  css += `
+
+/* uspotleb-full-width */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+}
+`;
+  await fs.writeFile(file, css, "utf8");
   return path.relative(cwd, file);
 }

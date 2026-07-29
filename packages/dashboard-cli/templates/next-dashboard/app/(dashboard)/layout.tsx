@@ -16,7 +16,7 @@ import { DashboardShell } from "@/components/dashboard/DashboardShell";
 export default function DashboardGroupLayout({ children }: { children: ReactNode }) {
   return (
     <DashboardThemeProvider>
-      <DashboardShell>{children}</DashboardShell>
+      <DashboardShell className="w-full">{children}</DashboardShell>
     </DashboardThemeProvider>
   );
 }
